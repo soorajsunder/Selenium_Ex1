@@ -1,0 +1,70 @@
+package Insights;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Test_getinsights {
+static WebDriver driver;
+public static void main(String[] args) throws Exception  {
+		
+		System.setProperty("webdriver.chrome.driver", "C://selenium-2.53.0/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://getinsights.co");
+		driver.manage().window().maximize();
+		
+		//Login//
+		driver.findElement(By.xpath("html/body/div[1]/div/nav/div/div[2]/ul/li[7]/a")).click();
+		
+		//Login_page//
+		driver.findElement(By.xpath(".//*[@id='form']/div[1]/input")).sendKeys("testgetinsight@gmail.com");
+		driver.findElement(By.xpath("html/body/div[1]/div/div[2]/div/form/div[2]/input")).sendKeys("airloyal");
+		driver.findElement(By.xpath("html/body/div[1]/div/div[2]/div/form/div[3]/div[2]/button")).click();
+		
+		//Create_survey//
+		Thread.sleep(10000);
+		driver.findElement(By.xpath(".//*[@id='rootId']/div[2]/div[1]/div[4]/div[2]/div/div/button")).click();
+		
+		//Create_Question//
+		driver.manage().timeouts().implicitlyWait(1700, TimeUnit.SECONDS);
+		driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div/button[2]")).click();
+		driver.findElement(By.xpath(".//*[@id='rootId']/div/div/div[2]/div[2]/div[1]/div[3]/div/div/div/button[2]")).click();
+		
+		
+		WebElement element = driver.findElement(By.xpath(".//*[@id='question 14998']/div/textarea"));
+		driver.manage().timeouts().implicitlyWait(700, TimeUnit.SECONDS);
+		if ( element != null ){
+		  element.sendKeys("Which is the best website to learn JAVA?");
+		} else{
+			
+			driver.findElement(By.xpath(".//*[@id='question 14998']/div/textarea")).sendKeys("which is the best website to learn JAVA?");
+		}
+		
+		driver.findElement(By.xpath(".//*[@id='rootId']/div/div/div[2]/div[2]/div[1]/div[5]/button")).click();
+		
+		//Post_Question
+		driver.findElement(By.cssSelector(".clear.openTextStyle.ng-pristine.ng-untouched.ng-invalid.ng-invalid-required")).sendKeys("Java");
+		driver.findElement(By.cssSelector(".launch-btn.ng-binding")).click();
+		
+		driver.quit();
+		driver.close();
+		
+		
+}
+		
+		
+		}
+	
+	     
+	
+
+	
+		
+		
+		
+	
+
+
